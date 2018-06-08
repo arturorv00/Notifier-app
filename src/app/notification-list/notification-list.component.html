@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <app-notification-item
+        *ngFor="let notificationEl of notifications; let i = index"
+        [notification]="notificationEl"
+        [index]="i"
+    ></app-notification-item>
+</ul>
+
+<hr>

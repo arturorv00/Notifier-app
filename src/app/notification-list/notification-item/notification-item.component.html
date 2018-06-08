@@ -1,0 +1,16 @@
+<li class="list-group-item">
+    <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        (click)="onClose(index)"
+    >
+        <span aria-hidden="true">×</span>
+    </button>
+    <h5>{{ notification.title }}</h5>
+    <p class="text-left d-inline">{{ notification.description}}</p>
+    <div class="text-muted text-right">
+        <p>{{ notification.date | timeAgo}}</p>
+    </div>
+</li>
