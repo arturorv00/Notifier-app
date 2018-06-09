@@ -1,27 +1,38 @@
 import { TestBed, async } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-describe('AppComponent', () => {
-  beforeEach(async(() => {
+import { NotificationListComponent } from './notification-list/notification-list.component';
+import { NotificationItemComponent } from './notification-list/notification-item/notification-item.component';
+import { NotificationListReducers } from './notification-list/store/notification-list.reducers';
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { RefreshComponent } from './refresh/refresh.component';
+
+describe('RefreshComponent', () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        NotificationListComponent,
+        NotificationItemComponent,
+        TimeAgoPipe,
+        RefreshComponent
       ],
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
+      imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        StoreModule.forRoot({ notificationList: NotificationListReducers })
+      ],
+      providers: []
+    });
+  });
+
+  it('should create the Component', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to notifier-app!');
-  }));
+    const componentIns = fixture.debugElement.componentInstance;
+    expect(componentIns).toBeTruthy();
+  });
 });
